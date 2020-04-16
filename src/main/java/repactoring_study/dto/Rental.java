@@ -26,36 +26,13 @@ public class Rental {
 	}
 	
 	//rental을 의미하므로 Reantal클래스로 이동하는게 옳다(응집도)
+	//타객체(Movie)의 속성을 switch문의 인자로 사용하는것은 나쁜 방법 -> Movie클래스로 이동
 	public double getCharge() {
-		double result = 0;
-		
-		switch(getMovie().getPriceCode()) {
-		case Movie.REGULAR:
-			result += 2;
-			if(getDaysRented() > 2) {
-				result += (getDaysRented()-2) *1.5;
-			}
-			break;
-		case Movie.NEW_RELEASE:
-				result += getDaysRented() *3;
-			break;
-			
-		case Movie.CHILDRENS:
-			result += 1.5;
-			if(getDaysRented() > 3) {
-				result += (getDaysRented()-3) *1.5;
-			}
-			break;			
-		}
-		return result;
+		return movie.getCharge(daysRented);
 	}
 	
 	public int getFrequentRenterPoints() {
-		
-		if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1) {
-			return 2;
-		}
-		return 1;
+		return movie.getFrequentRenterPoints(daysRented);
 	}
 	
 	
