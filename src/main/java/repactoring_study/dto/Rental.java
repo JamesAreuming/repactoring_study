@@ -25,7 +25,7 @@ public class Rental {
 		this.daysRented = daysRented;
 	}
 	
-	
+	//rental을 의미하므로 Reantal클래스로 이동하는게 옳다(응집도)
 	public double getCharge() {
 		double result = 0;
 		
@@ -48,6 +48,14 @@ public class Rental {
 			break;			
 		}
 		return result;
+	}
+	
+	public int getFrequentRenterPoints() {
+		
+		if((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1) {
+			return 2;
+		}
+		return 1;
 	}
 	
 	
